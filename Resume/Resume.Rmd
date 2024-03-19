@@ -1,0 +1,237 @@
+---
+name: Kazi Tanvir
+surname: Hasan
+position: "PhD Candidate"
+address: |
+  | Florida International University
+  | Miami, FL 33174, USA
+email: "khasan@fiu.edu"
+googlescholar: Kazi Tanvir Hasan
+github: khasa006
+orcid: 0000-0002-7723-4177  
+linkedin: khasa006
+date: "`r format(Sys.time(), '%B %Y')`"
+headcolor: 414141
+docname: CV
+output: 
+  vitae::awesomecv:
+  pandoc_args: ["--lua-filter=strong.lua"] 
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(vitae)
+library(tibble)
+library(tidyverse)
+library(here)
+library(readr)
+library(scholar)
+```
+
+
+
+# Education
+
+```{r education}
+tribble(
+  ~ Degree, ~ Major, ~ Year, ~ Institution, ~ Where,
+  "PhD in Public Health", "Biostatistics and Data Analytics", "2021-", "Department of Biostatistics, Florida International University", "Miami, FL, USA",
+  "Master in Mathematics", "Applied Statistics", "2020", "Department of Mathematics, Illinois State University", "Normal, IL, USA",
+  "Bachelor of Science (Hons)", "Statistics", "2017", "Department of Statistics, University of Dhaka", "Dhaka, Bangladesh"
+) %>% 
+  detailed_entries(Degree, Year, Institution, Major, Where)
+```
+
+
+
+# Research Experience
+
+```{r research_tribble,include=FALSE}
+research <- tribble(
+  ~title, ~startYear, ~endYear,  ~unit, ~where, ~detail,
+  "Gradutate Assistant", "August 2021", "Present", "Deparment of Biostatistics", "Florida International University",
+  "\\begin{itemize}
+    \\item  Implementing Bayesian and machine learning analysis techniques, significantly improving project outcomes
+     \\item Led research projects, analyzing data, and contributing to published papers
+  \\end{itemize}",
+  
+  "Research Assistant", "January 2021", "July 2021", "Department of Disaster Science and Climate Resilience", "University of Dhaka",
+  "\\begin{itemize}
+     \\item Conducted comprehensive data analysis leading to impactful scientific manuscripts
+     \\item Implemented robust data visualization methods, enhancing the understanding of complex findings
+  \\end{itemize}",
+  
+  "Undergeaduate Research Assistant", "January 2016", "December 2016", "Department of Statistics", "University of Dhaka",
+  "\\begin{itemize}
+     \\item Contributed to data collection, cleaning, visualization, and statistical analysis for reports
+  \\end{itemize}"
+)
+```
+
+```{r research}
+
+research %>%
+  detailed_entries(
+    with = title,
+    what = unit,
+    why = detail,
+    when = glue::glue("{startYear} - {endYear}",.na = ""),
+    where = where, .protect = F)
+
+```
+
+
+
+# Teaching Experience
+
+```{r teaching_tribble,include=FALSE}
+teaching <- tribble(
+  ~title, ~startYear, ~endYear,  ~unit, ~where, ~detail,
+   "Instructor Assistant",  "February 2023", "May 2023", "The Research Centers in Minority Institutions (RCMI) Consortium", "Morehouse School of Medicine", "Conducted a 10-week national series on R Programming using modified Data Carpentry curriculum",
+  
+  "Teaching Assistant", "August 2021", "Present", "Deparment of Biostatistics", "Florida International University",
+  "\\begin{itemize}
+     \\item Led discussion sections, hold office hours, develop course materials,
+      and assist with course logistics
+  \\end{itemize}",
+  
+  "Graduate Teaching Assistant", "August 2018", "May 2020", "Department of Mathematics", "Illinois State University",
+  "\\begin{itemize}
+     \\item Led tutorials, proctored examinations, and provided valuable academic support to students
+  \\end{itemize}"
+)
+```
+
+```{r teaching}
+
+teaching %>%
+  detailed_entries(
+    with = title,
+    what = unit,
+    why = detail,
+    when = glue::glue("{startYear} - {endYear}",.na = ""),
+    where = where, .protect = F)
+
+```
+
+
+
+# Skills
+
+```{=tex}
+\begin{cvskills}  
+\cvskill    {Software}    {Excel, SPSS}      
+\cvskill    {Programming Languages}    {R, SAS} 
+\cvskill    {Reproducible Report}    {Shiny, Quarto, Markdown/Rmarkdown, LaTeX}  
+\cvskill    {DevOps}    {Git, GitHub}     
+\cvskill    {Languages}    {Bangla, English}
+\end{cvskills}
+```
+
+
+\newpage
+# Publications
+
+
+## Manuscript
+
+```{r}
+bibliography_entries("Publication.bib") %>% 
+  arrange(desc(issued))
+```
+
+
+## Submitted/In Revision/In Press
+
+```{r}
+bibliography_entries("InProcess.bib")
+```
+
+
+## Conference presentations
+
+```{r}
+bibliography_entries("Conference.bib") %>% 
+  arrange(desc(issued))
+```
+
+
+
+# Honors and grants
+
+```{r honors_tribble, include=FALSE }
+honors <-  tribble(
+  ~accomplishment, ~year, ~detail, ~where,
+  "Stempel Travel Scholarship", 2023, "Awarded to attend conference ", "Florida International University", 
+  "SGA Graduate Scholarship", 2022, "Awarded for academic excellence", "Florida International University",
+  "GPSC Travel Grant", 2022, "Awarded to attend conference ", "Florida International University", 
+  "Stempel Travel Scholarship", 2022, "Awarded to attend conference ", "Florida International University", 
+  "Bangladesh Sweden Trust Fund Scholarship", 2022, "Bangladeshi students enrolled at foreign university","Ministry of Finance, Bangladesh",
+  "Graduate Assistantship", 2021, "Scholarship to conduct Doctoral studies", "Florida International University" ,
+  "Berk Summer Research Fellowship in Statistics", 2019, "Awarded for academic excellence", "Illinois State Univeristy",
+  "Graduate Teaching Assistantship", 2018, "Scholarship to conduct Graduate studies", "Illinois State Univeristy"
+) 
+
+```
+
+```{r honors}
+honors %>%
+  detailed_entries(
+    with = accomplishment,
+    why = detail,
+    when = year,
+    where = where
+  )
+```
+
+
+\newpage
+# Membership
+
+```{r membership_tribble, include=FALSE }
+membership <-  tribble(
+  ~accomplishment, ~year, ~detail,
+  "Student Member", "August 2021 – Present", "American Statistical Association (ASA)s",
+  "Lifetime Member", "July 2018 – Present", "Dhaka University Statistics Department Alumni Association (DUSDAA)"
+) 
+
+```
+
+```{r membership}
+membership %>%
+  detailed_entries(
+    with = accomplishment,
+    why = detail,
+    when = year
+  )
+```
+
+
+
+# Service and Outreach
+
+```{r service_tribble, include=FALSE }
+service <-  tribble(
+  ~accomplishment, ~year, ~detail, ~where,
+  "Treasurer.", "August 2022 – July 2023", "Bangladesh Students Organizations", "Florida International University",
+  "President", "September 2019 – May 2020", "Bangladesh Students Association", "Illinois State University",
+  "Treasurer.", "September 2018 – May 2019", "Bangladesh Students Association", "Illinois State University", 
+  "Student Ambassador .", "September 2018 – May 2020", "International Studies & Programs", "Illinois State University"
+) 
+
+```
+
+```{r service}
+service %>%
+  detailed_entries(
+    with = accomplishment,
+    why = detail,
+    when = year,
+    where = where
+  )
+```
+
+
+
+
+

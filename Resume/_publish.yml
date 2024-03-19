@@ -1,0 +1,4 @@
+- source: Resume.Rmd
+  quarto-pub:
+    - id: d885aac2-fdd0-4eed-95e9-ff358f027c4e
+      url: 'https://quartopub.com/sites/khasan/resume'
